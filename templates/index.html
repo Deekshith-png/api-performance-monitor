@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PulseCheck | API Performance Monitor</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body>
+<header class="topbar"><div class="brand-mark">P</div><div><div class="brand">PulseCheck</div><div class="brand-subtitle">API PERFORMANCE MONITOR</div></div><div class="live-pill"><span></span> Local monitor</div></header>
+<main class="container">
+<section class="hero"><div class="eyebrow">MONITOR · MEASURE · IMPROVE</div><h1>Know when your APIs<br><span>need attention.</span></h1><p>Run a check, measure response time, and keep a local history of API health.</p></section>
+<section class="panel check-panel"><div class="panel-heading"><div><h2>Run an API check</h2><p>Enter a public API endpoint using HTTP or HTTPS.</p></div><div class="status-icon">↗</div></div>
+<form id="check-form"><label for="url">API endpoint URL</label><div class="url-row"><input id="url" type="url" placeholder="https://jsonplaceholder.typicode.com/posts/1" required><button id="check-button" type="submit">Run check <span>→</span></button></div>
+<div class="quick-links"><span>Try an example:</span><button type="button" class="example" data-url="https://jsonplaceholder.typicode.com/posts/1">JSONPlaceholder</button><button type="button" class="example" data-url="https://httpbin.org/status/500">Test HTTP 500</button></div></form><div id="notice" class="notice" role="status" hidden></div></section>
+<section class="metrics-grid"><article class="metric-card"><div class="metric-label">TOTAL CHECKS</div><div class="metric-value" id="total-checks">0</div><div class="metric-foot">Checks recorded locally</div></article>
+<article class="metric-card"><div class="metric-label">SUCCESS RATE</div><div class="metric-value" id="success-rate">0<span class="unit">%</span></div><div class="metric-foot">HTTP responses below 400</div></article>
+<article class="metric-card"><div class="metric-label">AVG. RESPONSE TIME</div><div class="metric-value" id="average-time">0<span class="unit"> ms</span></div><div class="metric-foot">Across all saved checks</div></article>
+<article class="metric-card"><div class="metric-label">FAILED CHECKS</div><div class="metric-value" id="failed-checks">0</div><div class="metric-foot">HTTP errors or connection failures</div></article></section>
+<section class="panel chart-panel"><div class="section-heading"><div><h2>Response-time history</h2><p>Latest checks, in milliseconds</p></div><span class="chart-tag">LATENCY</span></div><div class="chart-wrap"><canvas id="latency-chart"></canvas></div><div id="empty-chart" class="empty-state">Run your first check to see performance data here.</div></section>
+<section class="panel history-panel"><div class="section-heading"><div><h2>Recent checks</h2><p>Stored in the local SQLite database</p></div><button id="clear-history" class="text-button" type="button">Clear history</button></div>
+<div class="table-scroll"><table><thead><tr><th>ENDPOINT</th><th>RESULT</th><th>RESPONSE TIME</th><th>CHECKED AT</th></tr></thead><tbody id="history-body"><tr><td colspan="4" class="empty-table">No checks yet.</td></tr></tbody></table></div></section>
+<footer>PulseCheck · Educational demo · Checks are initiated manually and stored on this computer.</footer></main>
+<script src="{{ url_for('static', filename='app.js') }}"></script></body></html>
